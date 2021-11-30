@@ -18,7 +18,12 @@ class CreateMoviesTable extends Migration
             $table->string("title");
             $table->integer("rating");
             $table->string("review");
+            $table->integer("user", false, true);
             $table->timestamps();
+            $table->foreign("user")
+                ->references("id")
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

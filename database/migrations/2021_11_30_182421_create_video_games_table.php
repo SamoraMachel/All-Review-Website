@@ -20,7 +20,12 @@ class CreateVideoGamesTable extends Migration
             $table->date("release_date");
             $table->integer("rating", false, true);
             $table->text("review");
+            $table->integer("user");
             $table->timestamps();
+            $table->foreign("user")
+                ->references("id")
+                ->on("users")
+                ->onDelete("cascade");
         });
     }
 

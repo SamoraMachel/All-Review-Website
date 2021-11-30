@@ -21,7 +21,12 @@ class CreateMusicTable extends Migration
             $table->integer("rating", false, true);
             $table->text("review");
             $table->date("release_date");
+            $table->integer("user");
             $table->timestamps();
+            $table->foreign("user")
+                ->references("id")
+                ->on("users")
+                ->onDelete("cascade");
         });
     }
 
