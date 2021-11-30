@@ -15,6 +15,12 @@ class CreateMusicTable extends Migration
     {
         Schema::create('music', function (Blueprint $table) {
             $table->id();
+            $table->string("album_name");
+            $table->string("album_artist");
+            $table->string("genre");
+            $table->integer("rating", false, true);
+            $table->text("review");
+            $table->date("release_date");
             $table->timestamps();
         });
     }
