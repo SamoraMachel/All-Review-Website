@@ -10,6 +10,7 @@ class Music extends Model
     use HasFactory;
 
     protected $fillable = [
+        'image',
         'album_name',
         'album_artist',
         'rating',

@@ -16,7 +16,7 @@ class MovieController extends Controller
     public function index()
     {
         $movie = Movie::all();
-        // TODO : Add logic to return the movie review page
+        return view("movies")->with('movies', $movie);
     }
 
     /**
@@ -26,7 +26,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view("forms.movieForm");
     }
 
     /**
@@ -35,10 +35,22 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidationRequest $request)
+    public function store(Request $request)
     {
-        $movie = Movie::create($request);
-        // todo L
+
+
+        $request->file("image")->store("images", 'public');
+
+        $movieObject = [
+            "image" => $request->file('image')->hashName(),
+            "title" => $request->input('title'),
+            "rating" => $request->input('rating'),
+            "review" => $request->input('review'),
+            "user" => $request->input('user')
+        ];
+
+        $movie = Movie::create($movieObject);
+        return redirect("/movie");
     }
 
     /**
@@ -49,7 +61,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        return $movie;
+        return view("detail.movie")->with("movie", $movie);
     }
 
     /**

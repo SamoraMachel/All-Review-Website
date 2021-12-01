@@ -14,7 +14,8 @@ class MusicController extends Controller
      */
     public function index()
     {
-        //
+        $musics = Music::all();
+        return view("music")->with("musics", $musics);
     }
 
     /**
@@ -24,7 +25,7 @@ class MusicController extends Controller
      */
     public function create()
     {
-        //
+        return view("forms.musicForm");
     }
 
     /**
@@ -35,7 +36,20 @@ class MusicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->file("image")->store("images", 'public');
+
+        $musicObject = [
+            'image' => $request->file('image')->hashName(),
+            'album_name' => $request->input("album_name"),
+            'album_artist' => $request->input('album_artist'),
+            'rating' => $request->input('rating'),
+            'review' => $request->input('review'),
+            'release_date' => $request->input('release_date'),
+            'user' => $request->input('user')
+        ];
+
+        Music::create($musicObject);
+        return redirect("/music");
     }
 
     /**
@@ -46,7 +60,8 @@ class MusicController extends Controller
      */
     public function show(Music $music)
     {
-        //
+        return view("detail.music")->with('music', $music);
+
     }
 
     /**

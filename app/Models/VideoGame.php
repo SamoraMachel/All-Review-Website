@@ -10,6 +10,7 @@ class VideoGame extends Model
     use HasFactory;
 
     protected $fillable = [
+        'image',
         'game_name',
         'platform',
         'release_date',

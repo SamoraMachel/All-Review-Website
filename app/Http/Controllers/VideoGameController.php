@@ -14,7 +14,8 @@ class VideoGameController extends Controller
      */
     public function index()
     {
-        //
+        $videoGames = VideoGame::all();
+        return view("videoGame")->with("videoGames", $videoGames);
     }
 
     /**
@@ -24,7 +25,7 @@ class VideoGameController extends Controller
      */
     public function create()
     {
-        //
+        return view('forms.videoGame');
     }
 
     /**
@@ -35,7 +36,21 @@ class VideoGameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->file("image")->store("images", 'public');
+
+        $gamesObject = [
+            'image' => $request->file('image')->hashName(),
+            'game_name' => $request->input('game_name'),
+            'platform' => $request->input('platform'),
+            'release_date' => $request->input('release_date'),
+            'rating' => $request->input('rating'),
+            'review' => $request->input('review'),
+            'user' => $request->input('user')
+        ];
+
+        VideoGame::create($gamesObject);
+
+        return redirect('/videogame');
     }
 
     /**
@@ -46,7 +61,7 @@ class VideoGameController extends Controller
      */
     public function show(VideoGame $videoGame)
     {
-        //
+        return view("detail.video")->with("videoGame", $videoGame);
     }
 
     /**

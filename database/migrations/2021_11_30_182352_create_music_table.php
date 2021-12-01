@@ -15,6 +15,7 @@ class CreateMusicTable extends Migration
     {
         Schema::create('music', function (Blueprint $table) {
             $table->id();
+            $table->string("image");
             $table->string("album_name");
             $table->string("album_artist");
             $table->integer("rating", false, true);

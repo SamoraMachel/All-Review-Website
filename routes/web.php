@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\MusicController;
+use App\Http\Controllers\VideoGameController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect("/movie");
+});
+Route::get('/home', function () {
+    return redirect("/movie");
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/contact', function () {
     return view('welcome');
 });
@@ -29,3 +34,12 @@ Route::get('/contact', function () {
 Route::resource('/movie', MovieController::class);
 Route::resource('/music', MusicController::class);
 Route::resource('/videogame', VideoGameController::class);
+
+Route::middleware("auth")->group(function() {
+    // Creation forms
+    Route::get('/reviewMovie', [MovieController::class, 'create']);
+    Route::get('/reviewMusic', [MusicController::class, 'create']);
+    Route::get('/reviewVideoGame', [VideoGameController::class, 'create']);
+});
+
+

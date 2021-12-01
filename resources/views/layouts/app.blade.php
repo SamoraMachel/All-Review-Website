@@ -16,6 +16,11 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
+    {{-- Font Awesome --}}
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -32,12 +37,34 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav ms-auto">
 
                     </ul>
 
+
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/movie">Movie Review</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/music">Music Review</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/videogame">Video Game Review</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Contact</a>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -74,6 +101,18 @@
                 </div>
             </div>
         </nav>
+        <div class="container pt-4 ">
+            <a href="/reviewMovie" class="col-4">
+                <span class="h5">Post Movie Review</span>
+            </a>
+            <a href="/reviewMusic" class="col-4">
+                <span class="h5 px-4">Post Music Review</span>
+            </a>
+            <a href="/reviewVideoGame" class="col-4">
+                <span class="h5">Post Video Game Review</span>
+            </a>
+
+        </div>
 
         <main class="py-4">
             @yield('content')
