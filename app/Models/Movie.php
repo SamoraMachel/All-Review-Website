@@ -12,6 +12,7 @@ class Movie extends Model
     protected $fillable = [
         "title",
         "rating",
-        "review"
+        "review",
+        'user'
     ];
 }
