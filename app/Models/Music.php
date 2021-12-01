@@ -17,4 +17,8 @@ class Music extends Model
         'release_date',
         'user'
     ];
+
+    public function genres() {
+        return $this->belongsToMany(MusicGenre::class);
+    }
 }

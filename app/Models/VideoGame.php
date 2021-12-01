@@ -17,4 +17,8 @@ class VideoGame extends Model
         'review',
         'user'
     ];
+
+    public function genres() {
+        return $this->belongsToMany(GamesGenre::class);
+    }
 }
