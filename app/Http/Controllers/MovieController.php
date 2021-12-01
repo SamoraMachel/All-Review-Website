@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidationRequest;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        $movie = Movie::all();
+        // TODO : Add logic to return the movie review page
     }
 
     /**
@@ -33,9 +35,10 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidationRequest $request)
     {
-        //
+        $movie = Movie::create($request);
+        // todo L
     }
 
     /**
@@ -46,7 +49,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
+        return $movie;
     }
 
     /**
@@ -67,9 +70,9 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(ValidationRequest $request, Movie $movie)
     {
-        //
+        // $movie->update($request);
     }
 
     /**

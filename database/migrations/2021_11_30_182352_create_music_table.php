@@ -17,7 +17,6 @@ class CreateMusicTable extends Migration
             $table->id();
             $table->string("album_name");
             $table->string("album_artist");
-            $table->string("genre");
             $table->integer("rating", false, true);
             $table->text("review");
             $table->date("release_date");
